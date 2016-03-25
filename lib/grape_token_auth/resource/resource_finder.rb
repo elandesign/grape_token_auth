@@ -27,18 +27,13 @@ module GrapeTokenAuth
 
     def find_resource_by_key
       query_value = params[finder_key] || params[finder_key.to_s]
-      query = "#{finder_key} = ? AND provider='email'"
 
       insensitive_keys = resource_class.case_insensitive_keys
       if insensitive_keys && insensitive_keys.include?(finder_key)
         query_value.downcase!
       end
 
-      resource_class.where(query, query_value).first
-
-#      if ActiveRecord::Base.connection.adapter_name.downcase.starts_with? 'mysql'
-#        q = "BINARY " + q
-#      end
+      resource_class.find_by(finder_key => query_value)
     end
 
     def configuration
