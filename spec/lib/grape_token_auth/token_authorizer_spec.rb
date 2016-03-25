@@ -46,7 +46,7 @@ module GrapeTokenAuth
                             token_prerequisites_present?: true, uid: 'bad')
           end
           before do
-            expect(User).to receive(:find_by_uid).with('bad').and_return(nil)
+            expect(User).to receive(:find_by).with(uid: 'bad').and_return(nil)
           end
 
           it 'returns nil' do
@@ -64,7 +64,7 @@ module GrapeTokenAuth
             end
 
             before do
-              expect(User).to receive(:find_by_uid).with('good')
+              expect(User).to receive(:find_by).with(uid: 'good')
                 .and_return(user)
               expect(user).to receive(:valid_token?).with('bad', 'client')
                 .and_return(false)
@@ -85,7 +85,7 @@ module GrapeTokenAuth
             end
 
             before do
-              expect(User).to receive(:find_by_uid).with('good')
+              expect(User).to receive(:find_by).with(uid: 'good')
                 .and_return(user)
               expect(user).to receive(:valid_token?).with('good', 'client')
                 .and_return(true)

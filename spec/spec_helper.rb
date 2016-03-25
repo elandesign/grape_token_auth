@@ -27,6 +27,7 @@ Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
 end
 
 Database.establish_connection
+Database.reset
 
 # Configure mail gem to work in test mode
 Mail.defaults do

@@ -57,7 +57,7 @@ module GrapeTokenAuth
         it 'does not confirm the user' do
           expect do
             xhr :get, '/auth/confirmation', confirmation_token: 'bogus'
-          end.to raise_error # unclear what, if any, error should occur
+          end.to raise_error(NoMethodError) # unclear what, if any, error should occur
           expect(new_user).not_to be_confirmed
         end
       end

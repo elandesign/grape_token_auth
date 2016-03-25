@@ -1,6 +1,3 @@
 test:
-  adapter: postgresql
-  database: gta_test
-  pool: 5
-  timeout: 5000
-  host: localhost
+  adapter: sqlite3
+  database: ":memory:"

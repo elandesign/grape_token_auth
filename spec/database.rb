@@ -9,7 +9,7 @@ class Database
       setup_config
       configuration = ActiveRecord::Base.configurations[:test]
       begin
-        ActiveRecord::Tasks::PostgreSQLDatabaseTasks.new(configuration).create
+        ActiveRecord::Tasks::SQLiteDatabaseTasks.new(configuration).create
       rescue DatabaseAlreadyExists
         $stderr.puts "#{configuration['database']} already exists"
       end
